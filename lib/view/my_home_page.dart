@@ -16,6 +16,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(onPressed: (){
+            Get.changeTheme(ThemeData.light());
+          }, icon: const Icon(Icons.wb_sunny_outlined)),
+          IconButton(onPressed: (){
+            Get.changeTheme(ThemeData.dark());
+          }, icon: const Icon(Icons.wb_sunny))
+        ],
       ),
       body: Center(
         child: Column(
@@ -41,7 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  isDismissible: false
                 );
               },
               child: const Text("Show BottomSheet"),
