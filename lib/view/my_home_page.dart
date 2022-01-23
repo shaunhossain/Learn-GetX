@@ -23,15 +23,16 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             MaterialButton(
               onPressed: () {
-                Get.snackbar(
-                  "SnackBar title",
-                  "this is a snackbar test",
-                  snackPosition: SnackPosition.BOTTOM,
-                  titleText: const Text("data"),
-                  backgroundColor: Colors.lightBlueAccent
+                Get.defaultDialog(
+                  barrierDismissible: false,
+                  title: "Dialog Box",
+                  onCancel: (){
+                    Get.back();
+                  },
+                  //cancel: const Text("Cancels")
                 );
               },
-              child: const Text("Show snackbar"),
+              child: const Text("Show dialog"),
               color: Colors.lightBlue,
             )
           ],
