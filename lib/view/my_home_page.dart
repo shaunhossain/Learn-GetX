@@ -23,16 +23,28 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             MaterialButton(
               onPressed: () {
-                Get.defaultDialog(
-                  barrierDismissible: false,
-                  title: "Dialog Box",
-                  onCancel: (){
-                    Get.back();
-                  },
-                  //cancel: const Text("Cancels")
+                Get.bottomSheet(
+                  Container(
+                    color: Colors.lightBlueAccent,
+                    height: MediaQuery.of(context).size.height * 0.40,
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Wrap(
+                      children: const [
+                        ListTile(
+                          title: Text("Name: shaunhossain"),
+                        ),
+                        ListTile(
+                          title: Text("Address: Mirpur"),
+                        ),
+                        ListTile(
+                          title: Text("Email: shaunhossain1995@gmail.com"),
+                        )
+                      ],
+                    ),
+                  )
                 );
               },
-              child: const Text("Show dialog"),
+              child: const Text("Show BottomSheet"),
               color: Colors.lightBlue,
             )
           ],
