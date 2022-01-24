@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_getx/view/next_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -17,12 +18,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         actions: [
-          IconButton(onPressed: (){
-            Get.changeTheme(ThemeData.light());
-          }, icon: const Icon(Icons.wb_sunny_outlined)),
-          IconButton(onPressed: (){
-            Get.changeTheme(ThemeData.dark());
-          }, icon: const Icon(Icons.wb_sunny))
+          IconButton(
+              onPressed: () {
+                Get.changeTheme(ThemeData.light());
+              },
+              icon: const Icon(Icons.wb_sunny_outlined)),
+          IconButton(
+              onPressed: () {
+                Get.changeTheme(ThemeData.dark());
+              },
+              icon: const Icon(Icons.wb_sunny))
         ],
       ),
       body: Center(
@@ -31,29 +36,16 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             MaterialButton(
               onPressed: () {
-                Get.bottomSheet(
-                  Container(
-                    color: Colors.lightBlueAccent,
-                    height: MediaQuery.of(context).size.height * 0.40,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Wrap(
-                      children: const [
-                        ListTile(
-                          title: Text("Name: shaunhossain"),
-                        ),
-                        ListTile(
-                          title: Text("Address: Mirpur"),
-                        ),
-                        ListTile(
-                          title: Text("Email: shaunhossain1995@gmail.com"),
-                        )
-                      ],
-                    ),
-                  ),
-                  isDismissible: false
-                );
+                // Get.to(const NextPage(),
+                //     // fullscreenDialog: true,
+                //     transition: Transition.zoom,
+                //   duration: const Duration(microseconds: 4000),
+                //   curve: Curves.bounceInOut
+                //
+                // );
+                Get.off(const NextPage());
               },
-              child: const Text("Show BottomSheet"),
+              child: const Text("Go to next"),
               color: Colors.lightBlue,
             )
           ],
