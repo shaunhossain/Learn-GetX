@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
-import 'package:learn_getx/student.dart';
+
 
 class MyController extends GetxController{
-  final Rx<Student> student = Student(name: "shaun",age: 26).obs;
+  var count = 0.obs;
 
-  void lowCaseToUpperCase(){
-    student.update((value) {
-      value?.name = value.name.toUpperCase();
-    });
+  void increment(){
+    count++;
+  }
+  void decrement(){
+    count--;
   }
 }

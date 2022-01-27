@@ -25,13 +25,25 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Obx(()=>Text("Name : ${myController.student.value.name}")),
+            GetX<MyController>(
+              init: MyController(),
+              builder: (controller){
+                return Text("counter : ${controller.count}");
+              },
+            ),
 
             MaterialButton(
               onPressed: (){
-                myController.lowCaseToUpperCase();
+                Get.find<MyController>().increment();
               },
-              child: const Text("Upper Case"),
+              child: const Text("Increment"),
+              color: Colors.lightBlue,
+            ),
+            MaterialButton(
+              onPressed: (){
+                Get.find<MyController>().decrement();
+              },
+              child: const Text("Decrement"),
               color: Colors.lightBlue,
             )
           ],
