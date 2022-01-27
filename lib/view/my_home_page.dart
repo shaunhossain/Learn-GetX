@@ -26,6 +26,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             GetBuilder<MyController>(
+              id: 'txtCount',
+              init: MyController(),
+              builder: (controller){
+                return Text("counter with id : ${controller.count}");
+              },
+            ),
+            GetBuilder<MyController>(
               init: MyController(),
               builder: (controller){
                 return Text("counter : ${controller.count}");

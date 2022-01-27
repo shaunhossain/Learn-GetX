@@ -6,10 +6,10 @@ class MyController extends GetxController{
 
   void increment(){
     count++;
-    update();
+    update(['txtCount']);
   }
   void decrement(){
     count--;
-    update();
+    update(['txtCount']);
   }
 }
