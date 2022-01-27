@@ -11,6 +11,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var count = 0.obs;
+
+  void increment(){
+    count++;
+  }
+
+  void decrement(){
+    count--;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,17 +32,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Obx(()=>Text("counter value is $count")),
             MaterialButton(
-              onPressed: () {
-                Get.snackbar(
-                  "SnackBar title",
-                  "this is a snackbar test",
-                  snackPosition: SnackPosition.BOTTOM,
-                  titleText: const Text("data"),
-                  backgroundColor: Colors.lightBlueAccent
-                );
-              },
-              child: const Text("Show snackbar"),
+              onPressed: ()=> increment(),
+              child: const Text("Increment"),
+              color: Colors.lightBlue,
+            ),
+            MaterialButton(
+              onPressed: ()=> decrement(),
+              child: const Text("Decrement"),
               color: Colors.lightBlue,
             )
           ],
