@@ -21,6 +21,7 @@ class _NextPageState extends State<NextPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text("Current page value ${Get.parameters["someValue"]}"),
             MaterialButton(
               onPressed: () {
                 Get.back();

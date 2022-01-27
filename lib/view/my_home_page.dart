@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_getx/view/next_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -34,20 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text("Current page ${Get.parameters["channel"]}"),
+            Text("previous page ${Get.parameters["from"]}"),
             MaterialButton(
               onPressed: () {
-                // Get.to(const NextPage(),
-                //     // fullscreenDialog: true,
-                //     transition: Transition.zoom,
-                //   duration: const Duration(microseconds: 4000),
-                //   curve: Curves.bounceInOut
-                //
-                // );
-                Get.off(const NextPage());
+                Get.toNamed("/next-page/12345");
               },
               child: const Text("Go to next"),
               color: Colors.lightBlue,
-            )
+            ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
