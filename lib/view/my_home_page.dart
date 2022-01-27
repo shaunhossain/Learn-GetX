@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_getx/mycontroller.dart';
 import 'package:learn_getx/student.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -12,18 +13,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // var count = 0.obs;
-  //
-  // void increment(){
-  //   count++;
-  // }
-  //
-  // void decrement(){
-  //   count--;
-  // }
-
-  final Rx<Student> student = Student(name: "shaun",age: 26).obs;
-
+  MyController myController = Get.put(MyController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +25,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Obx(()=>Text("Name : ${student.value.name}")),
+            Obx(()=>Text("Name : ${myController.student.value.name}")),
 
-            // MaterialButton(
-            //   onPressed: ()=> increment(),
-            //   child: const Text("Increment"),
-            //   color: Colors.lightBlue,
-            // ),
             MaterialButton(
               onPressed: (){
-                //student.name.value = student.name.value.toUpperCase();
-                student.update((value) {
-                  value?.name = value.name.toUpperCase();
-                });
+                myController.lowCaseToUpperCase();
               },
               child: const Text("Upper Case"),
               color: Colors.lightBlue,
