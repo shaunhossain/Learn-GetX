@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_getx/mycontroller.dart';
-import 'package:learn_getx/student.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -13,7 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  MyController myController = Get.put(MyController());
+  //MyController myController = Get.put(MyController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,32 +24,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            GetBuilder<MyController>(
-              id: 'txtCount',
-              init: MyController(),
-              builder: (controller){
-                return Text("counter with id : ${controller.count}");
-              },
-            ),
-            GetBuilder<MyController>(
-              init: MyController(),
-              builder: (controller){
-                return Text("counter : ${controller.count}");
-              },
-            ),
-
+            Text('hello'.tr),
             MaterialButton(
-              onPressed: (){
-                Get.find<MyController>().increment();
+              onPressed: () {
+                Get.find<MyController>().changeLanguage('bn', 'BD');
               },
-              child: const Text("Increment"),
+              child: const Text("Bengali"),
               color: Colors.lightBlue,
             ),
             MaterialButton(
-              onPressed: (){
-                Get.find<MyController>().decrement();
+              onPressed: () {
+                Get.find<MyController>().changeLanguage('en', 'US');
               },
-              child: const Text("Decrement"),
+              child: const Text("English"),
               color: Colors.lightBlue,
             )
           ],
