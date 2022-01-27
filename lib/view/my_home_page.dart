@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_getx/student.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -11,15 +12,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var count = 0.obs;
+  // var count = 0.obs;
+  //
+  // void increment(){
+  //   count++;
+  // }
+  //
+  // void decrement(){
+  //   count--;
+  // }
 
-  void increment(){
-    count++;
-  }
-
-  void decrement(){
-    count--;
-  }
+  var student = Student();
 
 
   @override
@@ -32,15 +35,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Obx(()=>Text("counter value is $count")),
+            Obx(()=>Text("Name : ${student.name}")),
+
+            // MaterialButton(
+            //   onPressed: ()=> increment(),
+            //   child: const Text("Increment"),
+            //   color: Colors.lightBlue,
+            // ),
             MaterialButton(
-              onPressed: ()=> increment(),
-              child: const Text("Increment"),
-              color: Colors.lightBlue,
-            ),
-            MaterialButton(
-              onPressed: ()=> decrement(),
-              child: const Text("Decrement"),
+              onPressed: (){
+                student.name.value = student.name.value.toUpperCase();
+              },
+              child: const Text("Upper Case"),
               color: Colors.lightBlue,
             )
           ],
