@@ -22,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //   count--;
   // }
 
-  var student = Student();
+  final Rx<Student> student = Student(name: "shaun",age: 26).obs;
 
 
   @override
@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Obx(()=>Text("Name : ${student.name}")),
+            Obx(()=>Text("Name : ${student.value.name}")),
 
             // MaterialButton(
             //   onPressed: ()=> increment(),
@@ -44,7 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
             // ),
             MaterialButton(
               onPressed: (){
-                student.name.value = student.name.value.toUpperCase();
+                //student.name.value = student.name.value.toUpperCase();
+                student.update((value) {
+                  value?.name = value.name.toUpperCase();
+                });
               },
               child: const Text("Upper Case"),
               color: Colors.lightBlue,
