@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
             page: () => const NextPage(),
             transition: Transition.leftToRight)
       ],
+      unknownRoute: GetPage(name: "/notfound",page:()=> const UnknownRoute()),
       home: Scaffold(
         appBar: AppBar(title: const Text("Initial page"),),
         body: Center(
@@ -46,3 +47,13 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class UnknownRoute extends StatelessWidget {
+  const UnknownRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
