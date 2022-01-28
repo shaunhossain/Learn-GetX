@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../my_controller.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -16,35 +18,40 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Get.changeTheme(ThemeData.light());
-              },
-              icon: const Icon(Icons.wb_sunny_outlined)),
-          IconButton(
-              onPressed: () {
-                Get.changeTheme(ThemeData.dark());
-              },
-              icon: const Icon(Icons.wb_sunny))
-        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Current page ${Get.parameters["channel"]}"),
-            Text("previous page ${Get.parameters["from"]}"),
-            MaterialButton(
-              onPressed: () {
-                Get.toNamed("/next-page/12345");
+            GetX<MyController>(
+              init: MyController(),
+              builder: (controller){
+                return Text("counter : ${controller.count}");
               },
-              child: const Text("Go to next"),
+            ),
+
+            MaterialButton(
+              onPressed: (){
+                Get.toNamed("/next-page/123456");
+              },
+              child: const Text("Go to Next Page"),
               color: Colors.lightBlue,
             ),
+            MaterialButton(
+              onPressed: (){
+                Get.find<MyController>().decrement();
+              },
+              child: const Text("Decrement"),
+              color: Colors.lightBlue,
+            )
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Get.find<MyController>().increment();
+      },
+        child: const Icon(Icons.plus_one),
+      ),// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

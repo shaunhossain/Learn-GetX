@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:learn_getx/view/my_home_page.dart';
+
+import '../my_controller.dart';
 
 class NextPage extends StatefulWidget {
   const NextPage({Key? key}) : super(key: key);
@@ -22,6 +25,12 @@ class _NextPageState extends State<NextPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text("Current page value ${Get.parameters["someValue"]}"),
+            GetX<MyController>(
+              init: MyController(),
+              builder: (controller){
+                return Text("counter : ${controller.count}");
+              },
+            ),
             MaterialButton(
               onPressed: () {
                 Get.back();
@@ -31,6 +40,11 @@ class _NextPageState extends State<NextPage> {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Get.find<MyController>().decrement();
+      },
+        child: const Icon(Icons.plus_one),
       ),
     );
   }
