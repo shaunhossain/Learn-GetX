@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_getx/all_controller_binding.dart';
+import 'package:learn_getx/my_controller_binding.dart';
 import 'package:learn_getx/view/my_home_page.dart';
 import 'package:learn_getx/view/next_page.dart';
 
@@ -15,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'GetX Demo',
+      //initialBinding: AllControllerBinding(),
       initialRoute: "/",
       defaultTransition: Transition.zoom,
       getPages: [
@@ -22,11 +25,13 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: "/home",
             page: () => const MyHomePage(title: "home"),
+            binding: HomeControllerBinding(),
             transition: Transition.leftToRight),
         GetPage(
             name: "/next-page/:someValue",
             page: () => const NextPage(),
-            transition: Transition.leftToRight)
+            binding: AllControllerBinding(),
+            transition: Transition.rightToLeft)
       ],
       unknownRoute: GetPage(name: "/notfound",page:()=> const UnknownRoute()),
       home: Scaffold(
