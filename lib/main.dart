@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:learn_getx/all_controller_binding.dart';
+import 'package:learn_getx/my_controller_binding.dart';
+import 'package:learn_getx/view/my_home_page.dart';
+import 'package:learn_getx/view/next_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,59 +15,50 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return GetMaterialApp(
+      title: 'GetX Demo',
+      //initialBinding: AllControllerBinding(),
+      initialRoute: "/",
+      defaultTransition: Transition.zoom,
+      getPages: [
+        GetPage(name: "/", page: () => const MyApp()),
+        GetPage(
+            name: "/home",
+            page: () => const MyHomePage(title: "home"),
+            binding: HomeControllerBinding(),
+            transition: Transition.leftToRight),
+        GetPage(
+            name: "/next-page/:someValue",
+            page: () => const NextPage(),
+            binding: AllControllerBinding(),
+            transition: Transition.rightToLeft)
+      ],
+      unknownRoute: GetPage(name: "/notfound",page:()=> const UnknownRoute()),
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Initial page"),),
+        body: Center(
+          child: FittedBox(
+            child: MaterialButton(
+              onPressed: () {
+                Get.toNamed("/home?channel=home&from=initial_route");
+              },
+              child: const Text("Go to Home"),
+              color: Colors.redAccent,
+
+            ),
+          )
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class UnknownRoute extends StatelessWidget {
+  const UnknownRoute({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    return Container();
   }
 }
+
